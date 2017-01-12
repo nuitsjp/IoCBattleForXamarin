@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:IoCBattleForXamarin.ViewModels;assembly=IoCBattleForXamarin"
+             x:Class="IoCBattleForXamarin.Views.MainPage">
+  <ContentPage.BindingContext>
+    <viewModels:MainPageViewModel/>
+  </ContentPage.BindingContext>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <StackLayout Orientation="Horizontal">
+      <Button Text="Execute" Command="{Binding StartCommand}"/>
+      <ActivityIndicator IsRunning="{Binding IsRunning.Value}" IsVisible="{Binding IsRunning.Value}"/>
+    </StackLayout>
+    <ListView Grid.Row="1" ItemsSource="{Binding BenchResults}">
+      
+    </ListView>
+  </Grid>
+</ContentPage>
