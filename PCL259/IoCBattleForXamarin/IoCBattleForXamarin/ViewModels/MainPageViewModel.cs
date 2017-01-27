@@ -21,6 +21,8 @@ namespace IoCBattleForXamarin.ViewModels
 
         private readonly IContainer[] _containers = {
             new NewContainer(), 
+            new DryIocContainer(), 
+            new SimpleInjectorContainer(), 
             new AutoFacContainer(), 
             new AutoFacLambdaContainer(), 
             new UnityContainer(), 
