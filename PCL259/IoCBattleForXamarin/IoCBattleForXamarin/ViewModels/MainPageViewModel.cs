@@ -15,14 +15,16 @@ namespace IoCBattleForXamarin.ViewModels
     {
         public string MainText { get; set; } = "Hello, IoC Battle.";
 
-        private readonly BenchEngine _benchEngine = new BenchEngine(1000);
+        public int ExecuteCount { get; set; } = 100000;
+
+        private readonly BenchEngine _benchEngine = new BenchEngine();
 
         private readonly IContainer[] _containers = {
             new NewContainer(), 
             new AutoFacContainer(), 
             new AutoFacLambdaContainer(), 
             new UnityContainer(), 
-            new NinjectContainer(), 
+            //new NinjectContainer(), 
         };
 
         public ReactiveProperty<bool> IsRunning { get; } = new ReactiveProperty<bool>();
@@ -38,7 +40,7 @@ namespace IoCBattleForXamarin.ViewModels
         private async void Start()
         {
             IsRunning.Value = true;
-            await _benchEngine.Start(_containers);
+            await _benchEngine.Start(ExecuteCount, _containers);
             IsRunning.Value = false;
         }
     }

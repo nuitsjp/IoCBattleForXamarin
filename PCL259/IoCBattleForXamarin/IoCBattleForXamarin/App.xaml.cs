@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using IoCBattleForXamarin.Views;
 using Xamarin.Forms;
 
 namespace IoCBattleForXamarin
@@ -13,7 +13,7 @@ namespace IoCBattleForXamarin
         {
             InitializeComponent();
 
-            MainPage = new IoCBattleForXamarin.MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

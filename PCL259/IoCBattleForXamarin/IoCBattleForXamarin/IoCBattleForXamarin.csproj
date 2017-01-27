@@ -45,9 +45,6 @@
     <Compile Include="Containers\NewContainer.cs" />
     <Compile Include="Containers\NinjectContainer.cs" />
     <Compile Include="Containers\UnityContainer.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\AuthenticationService.cs" />
     <Compile Include="Models\Authenticator.cs" />
     <Compile Include="Models\BenchEngine.cs" />
@@ -72,12 +69,9 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TimeSpanConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

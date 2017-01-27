@@ -9,17 +9,13 @@ namespace IoCBattleForXamarin.Models
 {
 	public class BenchEngine
 	{
-
-        private int Count { get; }
-
 	    public ObservableCollection<BenchResult> BenchResults { get; } = new ObservableCollection<BenchResult>();
 
-        public BenchEngine(int count = 100000)
+        public BenchEngine()
         {
-            Count = count;
         }
 
-        public Task Start(IContainer[] containers)
+        public Task Start(int executeCount, IContainer[] containers)
 		{
 		    return Task.Run(() =>
 		    {
@@ -29,18 +25,18 @@ namespace IoCBattleForXamarin.Models
                     GC.WaitForPendingFinalizers();
                     // Thread.Sleep(1000);
 
-                    RunBenchmark(container, container.SetupForSingletonTest, "Singleton");
+                    RunBenchmark(container, container.SetupForSingletonTest, "Singleton", executeCount);
 
                     GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
                     GC.WaitForPendingFinalizers();
                     // Thread.Sleep(1000);
 
-                    RunBenchmark(container, container.SetupForTransientTest, "Transient");
+                    RunBenchmark(container, container.SetupForTransientTest, "Transient", executeCount);
                 }
             });
 		}
 
-		private void RunBenchmark(IContainer container, Action setupAction, string mode)
+		private void RunBenchmark(IContainer container, Action setupAction, string mode, int executeCount)
 		{
 			var regTimer = new Stopwatch();
 			var resolveTimer = new Stopwatch();
@@ -59,7 +55,7 @@ namespace IoCBattleForXamarin.Models
 
 			resolveTimer.Start();
 
-			for (int i = 0; i < Count; i++)
+			for (int i = 0; i < executeCount; i++)
 			{
 				var instance = container.Resolve<IWebService>();
 			}
